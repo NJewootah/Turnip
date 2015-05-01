@@ -8,7 +8,8 @@ Given(/^I am logged in$/) do
 end
 
 When(/^I search for Ruby$/) do
-	pending # Write code here that turns the phrase above into concrete actions
+	browser.input(id: 'masthead-search-term').send_keys 'Ruby'
+	browser.input(id: 'masthead-search-term').send_keys :enter
 end
 
 Then(/^I should see a list of results relevent to Ruby$/) do
