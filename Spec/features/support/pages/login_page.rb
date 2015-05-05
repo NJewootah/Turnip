@@ -1,23 +1,31 @@
 class LoginPage < Generic
+  
+  # set default credentials
+  PASSWORD = 'Pass123w'
+  USER = {
+    Nini: 'ninistudies@gmail.com', 
+    Neermal: 'ninitests@gmail.com'
+  }
+
   def visit()
-    @browser.goto 'https://accounts.google.com'
+    @browser.goto 'http://facebook.com'
   end
 
-  def login(email,password)
-    self.email = email
-    self.password = password
+  def login(user)
+    self.email = USER[user.to_sym]
+    password
     submit
   end
 
   def email=(email)
-    @browser.input(id: 'Email').send_keys email
+    @browser.text_field(id: 'email').set(email)
   end
 
-  def password=(password)
-    @browser.input(id: 'Passwd').send_keys password
+  def password()
+    @browser.text_field(id: 'pass').set(PASSWORD)
   end
 
   def submit()
-    @browser.input(id: 'signIn').click
+    @browser.input(id: 'u_0_l').click
   end
 end
