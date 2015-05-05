@@ -1,9 +1,8 @@
 module Turnip
   module Steps
-    step "I am logged in" do
+    step "I am logged in as :user" do |user|
     @app.login.visit
-    @app.login.login('ninistudies@gmail.com', 'Pass123w')
-    @app.home.visit
+    @app.login.login user
     end
   end
 end
