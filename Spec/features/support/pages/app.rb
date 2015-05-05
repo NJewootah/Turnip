@@ -3,6 +3,10 @@ class App
     @browser = browser
   end
 
+  def taskbar
+    Taskbar.new @browser
+  end
+
   def home
     HomePage.new @browser
   end
@@ -11,11 +15,15 @@ class App
     LoginPage.new @browser
   end
 
-  def results
-    ResultsPage.new @browser
+  def friend
+    FriendPage.new @browser
   end
 
-  def taskbar
-    Taskbar.new @browser
+  def friend_request
+    FriendRequestPage.new @browser
+  end
+
+  def profile
+    ProfilePage.new @browser
   end
 end
