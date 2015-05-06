@@ -9,6 +9,7 @@ Dir.glob("spec/lib/**/*.rb") { |f| load f}
 Dir.glob("spec/**/*steps.rb") { |f| load f}
 
 RSpec.configure do |config|
+  config.include HookMethods
   config.color = true
   config.tty = true
   config.formatter = :documentation
