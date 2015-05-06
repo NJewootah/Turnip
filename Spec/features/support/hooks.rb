@@ -11,21 +11,10 @@ RSpec.configure do |config|
 
   # Status Feature Hook
   config.before(:status => true) do
-    @app.login.visit
-    @app.login.login 'Nini'
-    @app.taskbar.search 'Neermal Tests'
-    @app.friend.send_friend_request
-    @app.taskbar.logout
-    @app.login.visit
-    @app.login.login 'Neermal'
-    @app.friend_request.visit
-    @app.friend_request.approve('Nini Tests')
-    @app.taskbar.logout
+    add_friend('Nini', 'Neermal')
   end
 
   config.after(:status => true) do
-    @app.login.login 'Nini'
-    @app.taskbar.search 'Neermal Tests'
-    @app.friend.unfriend
+    unfriend('Nini', 'Neermal')
   end
 end
