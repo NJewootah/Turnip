@@ -1,5 +1,6 @@
 class FriendPage < Generic
   def send_friend_request()
+    @browser.button(text: 'Add Friend').wait_until_present
     @browser.button(text: 'Add Friend').click
   end
 
