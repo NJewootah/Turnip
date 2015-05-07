@@ -1,6 +1,7 @@
 class FriendRequestPage < Generic
   def visit()
-    @browser.goto 'https://www.facebook.com/friends/requests/?fcref=jwl'
+    @browser.div(id: 'fbRequestsJewel').a(name: 'requests').click
+    @browser.div(id: 'fbRequestsFlyout').span(text: 'View all').click
   end
 
   def approve(user)
