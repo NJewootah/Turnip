@@ -15,6 +15,11 @@ RSpec.configure do |config|
   end
 
   config.after(:status => true) do
+    @app.login.visit
+    @app.login.login 'Nini'
+    @app.profile.visit
+    @app.profile.delete_status MESSAGE
+    @app.taskbar.logout
     unfriend('Nini', 'Neermal')
   end
 end
