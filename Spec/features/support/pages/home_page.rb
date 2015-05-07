@@ -1,7 +1,10 @@
 class HomePage < Generic
   def visit()
-    @browser.div(class: '_5ah-').wait_until_present
-    @browser.div(class: '_5ah-').click
+    if @browser.li(id: 'u_0_e').a(text: 'Home').present?
+      @browser.li(id: 'u_0_e').a(text: 'Home').click
+    else
+      @browser.goto 'http://facebook.com'
+    end
   end
 
   def check_status_exist(message)
