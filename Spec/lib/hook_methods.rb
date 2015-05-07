@@ -19,4 +19,20 @@ module HookMethods
     @app.friend.unfriend
     @app.taskbar.logout
   end
+
+  def create_status(message)
+    @app.login.visit
+    @app.login.login 'Nini'
+    @app.profile.visit
+    @app.profile.new_status MESSAGE
+    @app.taskbar.logout
+  end
+
+  def delete_status(message)
+    @app.login.visit
+    @app.login.login 'Nini'
+    @app.profile.visit
+    @app.profile.delete_status MESSAGE
+    @app.taskbar.logout
+  end
 end
