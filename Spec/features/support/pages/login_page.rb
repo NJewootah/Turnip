@@ -8,7 +8,9 @@ class LoginPage < Generic
   }
 
   def visit()
-    @browser.goto 'http://facebook.com'
+    unless @browser.text_field(id: 'email').present?
+      @browser.goto 'http://facebook.com'
+    end
   end
 
   def login(user)
