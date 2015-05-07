@@ -1,4 +1,4 @@
-MESSAGE = 'This is my status ' + rand(999).to_s
+MESSAGE = 'STATUS FEATURE: This is my new status'
 
 steps_for :status do
   step "I create my status" do
@@ -7,7 +7,7 @@ steps_for :status do
     @app.taskbar.logout
   end
 
-  step "my friends should see my created status on their homepage" do
+  step "my friends should see my :type status on their homepage" do |type|
     @app.login.login 'Neermal'
     @app.home.visit
     @app.home.check_status_exist MESSAGE
