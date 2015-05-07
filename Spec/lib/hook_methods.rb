@@ -13,8 +13,10 @@ module HookMethods
   end
 
   def unfriend(user, friend)
+    @app.login.visit
     @app.login.login user
     @app.taskbar.search friend + ' Tests'
     @app.friend.unfriend
+    @app.taskbar.logout
   end
 end
