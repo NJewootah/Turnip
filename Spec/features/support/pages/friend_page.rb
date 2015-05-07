@@ -4,6 +4,7 @@ class FriendPage < Generic
   end
 
   def unfriend()
+    @browser.span(class: '_55pe').span(text: 'Friends').wait_until_present
     @browser.span(class: '_55pe').span(text: 'Friends').click
     @browser.div(class: 'FriendListActionMenu').span(text: 'Unfriend').click
   end
