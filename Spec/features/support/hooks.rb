@@ -10,16 +10,13 @@ RSpec.configure do |config|
   end
 
   # Status Feature Hook
-  config.before(:status => true) do
+  config.before(:home_page => true) do
     add_friend('Nini', 'Neermal')
+    create_status(MESSAGE)
   end
 
-  config.after(:status => true) do
-    @app.login.visit
-    @app.login.login 'Nini'
-    @app.profile.visit
-    @app.profile.delete_status MESSAGE
-    @app.taskbar.logout
+  config.after(:home_page => true) do
+    delete_status(MESSAGE)
     unfriend('Nini', 'Neermal')
   end
 end
