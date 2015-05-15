@@ -26,4 +26,8 @@ class App
   def profile
     ProfilePage.new @browser
   end
+
+  def home_9gag
+    Home9GagPage.new @browser
+  end
 end
