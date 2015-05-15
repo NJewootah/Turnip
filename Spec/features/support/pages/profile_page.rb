@@ -3,17 +3,6 @@ class ProfilePage < Generic
    @browser.span(class: '_2dpb').click
   end
 
-  def new_status(message)
-    status_tab
-    write_post(message)
-    post
-  end
-
-  def delete_status(message)
-    find_post(message)
-    delete_post
-  end
-
   def status_tab()
     @browser.div(class: 'lastCapsule').span(text: 'Status').wait_until_present
     @browser.div(class: 'lastCapsule').span(text: 'Status').click
