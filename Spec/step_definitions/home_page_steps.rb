@@ -1,12 +1,13 @@
-MESSAGE = 'STATUS FEATURE: This is my new status'
-
 steps_for :home_page do
   step "I am on the home page" do
-    @app.home.visit
+    $app.home.visit
   end
 
-  step "I should see my friend's posted status" do
-    @app.home.check_status_exist MESSAGE
-    @app.taskbar.logout
+  step "I should see my friend's :content" do |content|
+    if content == "posted status"
+      $nini_home_page_status.exist?
+    else
+      $nini_home_page_9gag.exist?
+    end
   end
 end
