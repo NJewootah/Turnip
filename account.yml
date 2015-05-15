@@ -1,0 +1,15 @@
+# Account Details
+# ---------------------------------------------------------------------
+# All accounts use the same password
+# Password constant defined in LoginPage class
+# ---------------------------------------------------------------------
+
+Nini: 
+  firstname: Nini
+  lastname: Tests
+  email: ninistudies@gmail.com
+
+Neermal: 
+  firstname: Neermal
+  lastname: Tests
+  email: ninitests@gmail.com
