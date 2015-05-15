@@ -8,6 +8,11 @@ class HomePage < Generic
   end
 
   def check_status_exist(message)
-    @browser.div(class: '_5pbx userContent').p(text: message).wait_until_present
+    @browser.divs(class: '_5pbx userContent')[0].wait_until_present
+    @browser.divs(class: '_5pbx userContent').each do |post|
+      if post.text == message
+        true
+      end
+    end
   end
 end
