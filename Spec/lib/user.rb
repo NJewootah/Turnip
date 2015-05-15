@@ -1,27 +1,24 @@
-class User
-  attr_reader :user, :email, :firstname, :lastname, :fullname, :users
-  attr_accessor :friends
+# Object Representing Users in the Facebook Interface
+# -----------------------------------------------------------------------------
+# Authors: Neermal Jewootah (njewootah@spartaglobal.com)
+# Date Modified: 13-05-2015
+# -----------------------------------------------------------------------------
 
+class User
+  attr_reader :email, :fullname, :friends
   @@users = Hash.new
 
-  def initialize(app, user)
-    @account = YAML.load(File.open('account.yml'))
-    @email = @account[user]['email']
-    @firstname = @account[user]['firstname']
-    @lastname = @account[user]['lastname']
-    @fullname = @firstname + ' ' + @lastname
-    @user = user
+  def initialize(app, id)
     @app = app
-    instance_status @user
-  end
+    @id = id
+    control_instance
 
-  def instance_status(user)
-    if @@users.has_key?(user.to_sym)
-      @friends = @@users[user.to_sym].friends
-    else
-      @friends = []
-      @@users[user.to_sym] = self
-    end
+    user_data = YAML.load(File.open('account.yml'))
+    raise "User ID provided doesn't exist in account.yml" unless user_data[id] != nil
+    @email = user_data[id]['email']
+    @firstname = user_data[id]['firstname']
+    @lastname = user_data[id]['lastname']
+    @fullname = @firstname + ' ' + @lastname
   end
 
   def login()
@@ -43,55 +40,20 @@ class User
     end
   end
 
-  def add_friend(friend)
-    validate friend
-    new_friendship friend
-    login
-    @app.taskbar.search friend.fullname
-    @app.friend.send_friend_request
-    friend.login
-    @app.friend_request.visit
-    @app.friend_request.approve @fullname
-  end
-
-  def unfriend(*args)
-    if args.size == 0
-      remove_all_friends
-    elsif args.size == 1
-      remove_friend args[0]
+  def self.exist?(user)
+    if @@users.has_key?(user.to_sym)
+      true
     else
-      raise 'Number of arguments parsed is invalid'
+      false
     end
   end
 
-  def new_friendship(friend)
-    @friends << friend
-    friend.friends << self
-  end
-
-  def remove_all_friends()
-    unless @friends.empty?
-      login
-      @friends.each do |friend|
-        @app.taskbar.search friend.fullname
-        @app.friend.unfriend
-      end
-    end
-  end
-
-  def remove_friend(friend)
-    validate friend
-    login
-    @app.taskbar.search friend.fullname
-    @app.friend.unfriend
-  end
-
-  def validate(friend)
-    if friend.is_a?(User) == false
-      raise 'Argument parsed is not an instance of class User'
-    end
-    if friend.email == @email
-      raise 'Users cannot belong to their own friend list'
+  def control_instance()
+    if User.exist?(@id)
+      return @@users[@id.to_sym]
+    else
+      @friends = []
+      @@users[@id.to_sym] = self
     end
   end
 end
