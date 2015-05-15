@@ -1,11 +1,5 @@
 class LoginPage < Generic
-  
-  # set default credentials
   PASSWORD = 'Pass123w'
-  USER = {
-    Nini: 'ninistudies@gmail.com', 
-    Neermal: 'ninitests@gmail.com'
-  }
 
   def visit()
     unless @browser.text_field(id: 'email').present?
@@ -13,8 +7,8 @@ class LoginPage < Generic
     end
   end
 
-  def login(user)
-    self.email = USER[user.to_sym]
+  def login(email)
+    self.email = email
     password
     submit
   end
