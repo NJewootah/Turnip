@@ -15,9 +15,7 @@ RSpec.configure do |config|
       $neermal = FriendList.new($app, 'Neermal')
       $nini.add_friend($neermal.user)
       $nini_home_page_9gag = Share.new($app, 'Nini')
-      $nini_home_page_9gag.new_post
       $nini_home_page_status = Status.new($app, 'Nini', 'Home Page Feature')
-      $nini_home_page_status.new_post
       $home_page_hook = true
     end
   end

@@ -10,6 +10,7 @@ class Status < TimelinePost
   def initialize(app, id, message)
     super(app, id)
     @message = generate_message(message)
+    new_post
   end
 
   def create()

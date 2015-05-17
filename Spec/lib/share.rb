@@ -9,6 +9,7 @@ class Share < TimelinePost
 
   def initialize(app, id)
     super
+    new_post
   end
 
   def create()
